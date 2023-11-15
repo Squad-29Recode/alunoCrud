@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import connection.ConnectionMySQL;
-import modelos.Aluno;
+import modelos.Curso;
 
-public class AlunoDAO {
+public class CursoDAO {
 	
 	//CREATE
-	public void create (Aluno aluno) {
-		String sql = "insert into aluno (CPF, email, nome, senha) values (?, ?, ?, ?)";
+	public void create (Curso curso) {
+		String sql = "insert into curso (curso, data_Curso) values (?, ?)";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -22,10 +22,8 @@ public class AlunoDAO {
 			conn = ConnectionMySQL.createConnectionMySQL();
 			pstm = conn.prepareStatement(sql);
 			
-			pstm.setString(1, aluno.getCPF());
-			pstm.setString(2, aluno.getEmail());
-			pstm.setString(3, aluno.getNome());
-			pstm.setString(4, aluno.getSenha());
+			pstm.setString(1, curso.getCurso());
+			pstm.setString(2, curso.getData_Curso());
 			
 			pstm.execute();
 			
@@ -51,9 +49,9 @@ public class AlunoDAO {
 	}
 
 	//READ
-		public List <Aluno> read(){
-			List<Aluno> alunos = new ArrayList<Aluno>();
-			String sql = "select * from aluno";
+		public List <Curso> read(){
+			List<Curso> curso = new ArrayList<Curso>();
+			String sql = "select * from curso";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -66,14 +64,12 @@ public class AlunoDAO {
 			rset = pstm.executeQuery();
 			
 			while (rset.next()) {
-				Aluno aluno = new Aluno();
-				aluno.setId (rset.getInt("id_Aluno"));
-				aluno.setCPF (rset.getString("CPF"));
-				aluno.setEmail (rset.getString("email"));
-				aluno.setNome (rset.getString("nome"));
-				aluno.setSenha (rset.getString("senha"));
+				Curso curso1 = new Curso();
+				curso1.setCurso (rset.getString("curso"));
+				curso1.setId (rset.getInt("id_Curso"));
+				curso1.setData_Curso (rset.getString("data_Curso"));
 				
-				alunos.add(aluno);
+				curso.add(curso1);
 			}
 		
 	} catch (Exception e) {
@@ -95,12 +91,12 @@ public class AlunoDAO {
 			 }
 }
 		
-		return alunos;
+		return curso;
 	}
 	
 	//UPDATE
-	public void update (Aluno aluno) {
-		String sql = "UPDATE aluno SET CPF = ?,  email = ?, nome = ?, senha = ? WHERE id_Aluno = ?";
+	public void update (Curso curso) {
+		String sql = "UPDATE curso SET curso = ?,  data_Curso = ? WHERE id_Curso = ?";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -110,12 +106,11 @@ public class AlunoDAO {
 			
 			pstm = conn.prepareStatement(sql);
 			
-			pstm.setString(1, aluno.getCPF());
-			pstm.setString(2, aluno.getEmail());
-			pstm.setString(3, aluno.getNome());
-			pstm.setString(4, aluno.getSenha());
+			pstm.setString(1, curso.getCurso());
+			pstm.setString(2, curso.getData_Curso());
 			
-			pstm.setInt(5, aluno.getId());
+			
+			pstm.setInt(3, curso.getId());
 			
 			pstm.execute();
 		
@@ -140,8 +135,8 @@ public class AlunoDAO {
 	} 
 	
 	//DELETE
-	public void delete (int id_Aluno) {
-	String sql = "DELETE FROM aluno WHERE id_Aluno = ?";
+	public void delete (int id_Curso) {
+	String sql = "DELETE FROM curso WHERE id_Curso = ?";
 	
 	Connection conn = null;
 	PreparedStatement pstm = null;
@@ -151,7 +146,7 @@ public class AlunoDAO {
 		
 		pstm = conn.prepareStatement(sql);
 		
-		pstm.setInt(1, id_Aluno);
+		pstm.setInt(1, id_Curso);
 		
 		pstm.execute();
 	
@@ -176,9 +171,9 @@ public class AlunoDAO {
 	}
 	}
 	//readById
-	public Aluno readById (int id_Aluno) {
-		Aluno aluno = new Aluno();
-		String sql = "select * from aluno WHERE id_Aluno= ?";
+	public Curso readById (int id_Curso) {
+		Curso curso= new Curso();
+		String sql = "select * from curso WHERE id_Curso= ?";
 		
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -189,17 +184,15 @@ public class AlunoDAO {
 			
 			pstm = conn.prepareStatement(sql);
 			
-			pstm.setInt(1, id_Aluno);
+			pstm.setInt(1, id_Curso);
 			
 			rset = pstm.executeQuery();
 			
 			rset.next();
 			
-			aluno.setId(rset.getInt("id_Aluno"));
-			aluno.setCPF(rset.getString("CPF"));
-			aluno.setEmail(rset.getString("email"));
-			aluno.setNome(rset.getString("nome"));
-			aluno.setSenha(rset.getString("senha"));
+			curso.setCurso(rset.getString("curso"));
+			curso.setId(rset.getInt("id_Curso"));
+			curso.setData_Curso(rset.getString("data_Curso"));
 		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -219,7 +212,8 @@ public class AlunoDAO {
 					 e.printStackTrace();
 				 }
 	    }
-		return aluno;
+		return curso;
 		}
 	}
+
 

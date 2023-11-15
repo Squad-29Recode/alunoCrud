@@ -11,7 +11,7 @@ public class AlunoCRUD {
 		AlunoDAO alunoDAO = new AlunoDAO ();	
 		Scanner s = new Scanner (System.in);
 	
-		int opcao = 0, id = 0;
+		int opcao = 0, id_Aluno = 0;
 		
 		String CPF = "", email = "", nome = "", senha = "";
 		
@@ -50,7 +50,7 @@ public class AlunoCRUD {
 			 case 3:
 				 
 				System.out.println("Digite o id:");
-				id = s.nextInt();
+				id_Aluno = s.nextInt();
 				s.nextLine();
 				System.out.println("Digite o CPF:");
 				CPF = s.nextLine();
@@ -61,25 +61,25 @@ public class AlunoCRUD {
 				System.out.println("Digite a senha:");
 				senha = s.nextLine();
 				
-				Aluno aluno2 = new Aluno(id, CPF, email, nome, senha); 
+				Aluno aluno2 = new Aluno(id_Aluno, CPF, email, nome, senha); 
 				alunoDAO.update(aluno2);	
 				break;
 					   
 			 case 4:
 				 System.out.println("Digite um id:");
-				 id = s.nextInt();
+				 id_Aluno = s.nextInt();
 				 s.nextLine();
 				 	
-				alunoDAO.delete(id);		
+				alunoDAO.delete(id_Aluno);		
 				break;
 						   
 			 case 5:
 				 
 				 System.out.println("Digite um id:");
-				 id = s.nextInt();
+				 id_Aluno = s.nextInt();
 				 s.nextLine();
 				 	
-				Aluno aluno3 = alunoDAO.readById(id);
+				Aluno aluno3 = alunoDAO.readById(id_Aluno);
 				System.out.println(aluno3.toString());
 				break;
 				

@@ -3,7 +3,7 @@ package modelos;
 public class Aluno {
 
     //atributos
-	private int id;
+	private int id_Aluno;
 	private String CPF;
 	private String email;
 	private String nome;
@@ -13,8 +13,8 @@ public class Aluno {
 	public Aluno () {
 	}
 
-	public  Aluno(int id, String CPF, String email, String nome, String senha) {
-		this.id = id;
+	public Aluno(int id_Aluno, String CPF, String email, String nome, String senha) {
+		this.id_Aluno = id_Aluno;
 		this.CPF = CPF;
 		this.email = email;
 		this.nome = nome;
@@ -31,11 +31,11 @@ public class Aluno {
 
 	//getters e setters	
 	public int getId() {
-		return id;
+		return id_Aluno;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int id_Aluno) {
+		this.id_Aluno = id_Aluno;
 	}
 	
 	public String getCPF() {
@@ -74,7 +74,9 @@ public class Aluno {
 	
 	@Override
 	public String toString() {
-		return "Aluno [id_Aluno=" + id + ", CPF=" + CPF + ", email=" + email + ", nome=" + nome + ", senha=" + senha + "]";
+		return "Aluno [id_Aluno=" + id_Aluno + ", CPF=" + CPF + ", email=" + email + ", nome=" + nome + ", senha=" + senha + "]";
 	}
+
+	
 		
 }
